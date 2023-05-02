@@ -1,0 +1,194 @@
+:root {
+    --cor-principal: #4D3EFC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../imgs/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, .3);
+    z-index: 2;
+}
+
+main {
+    display: flex;
+    width: 45%;
+    height: 60%;
+    border: 2px solid var(--cor-principal);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255, .5);
+}
+
+.divCadastro {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    border-right: 2px solid #00000093;
+}
+
+.logo {
+    width: 100%;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.cadastro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro a {
+    padding: 4%;
+    background-color: var(--cor-principal);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: all .3s;
+    font-size: 1.2rem;
+}
+
+.cadastro a:hover {
+    background-color: #6456ff;
+}
+
+.divLogin {
+    width: 60%;
+    height: 100%;
+}
+
+.divTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    border-bottom: 2px solid #00000093;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+#formLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.divInputForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.divEmail {
+    margin-bottom: 5%;
+}
+
+.divInp {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    height: 20%;
+    overflow: hidden;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.divInp input {
+    background-color: transparent;
+    padding: 4%;
+    border: 2px solid #00000093;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    color: black;
+}
+
+.divInp input::placeholder {
+    font-size: 1.2rem;
+    color: black;
+}
+
+/* Popup */
+
+/* .bemvindo {
+	position: absolute;
+	bottom: 50px;
+	left: 50px;
+	width: max-content;
+	padding: 20px 15px;
+	border-radius: 10px;
+	background-color: #141619;
+	color: #f6f5f9;
+	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+	transform: translateY(30px);
+	opacity: 0;
+	visibility: hidden;
+	animation: fade-in 4s linear forwards;
+    z-index: 50;
+}
+
+.progressNotificacao {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	width: calc(100% - 10px);
+	height: 3px;
+	transform: scaleX(0);
+	transform-origin: left;
+	background-image: linear-gradient(to right, #539bdb, #3250bf);
+	border-radius: inherit;
+	animation: load 3s 0.25s linear forwards;
+    z-index: 50;
+}
+
+@keyframes fade-in {
+	5% {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+	90% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes load {
+	to {
+		transform: scaleX(1);
+	}
+} */
+
+/* /Popup */
