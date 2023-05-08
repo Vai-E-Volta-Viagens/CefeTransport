@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cefetransport</groupId>
-	<artifactId>cefetransport</artifactId>
+	<artifactId>CefeTransport</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>cefetransport</name>
-	<description>Sistema de Gerenciamento de Modais do sistema VVV.</description>
+	<name>CefeTransport</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -39,11 +39,6 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
