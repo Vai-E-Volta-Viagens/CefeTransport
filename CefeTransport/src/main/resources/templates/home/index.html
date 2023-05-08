@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="bemvindo">
-        <p>Bem vindo, Marcio</p>
+        <p>Bem vindo, <span th:text="${session.funcionarioLogado.nome}"></span></p>
         <span class="progressNotificacao"></span>
     </div>
 </body>

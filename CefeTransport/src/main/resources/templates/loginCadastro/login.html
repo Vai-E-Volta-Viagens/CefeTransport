@@ -35,14 +35,13 @@
                     </div>
                     <form action="/login" method="post" id="formLogin" th:object="${funcionario}">
                         <div class="divInputForm">
-                            <div class="divError" th:if="${msg}">
-                                <strong class="error" th:text="${msg}"></strong>
-                            </div>
                             <div class="divInp divEmail">
-                                <input type="email" class="input email" placeholder="E-mail">
+                                <input type="email" class="input email" th:field="*{email}" placeholder="E-mail">
+                                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></small>
                             </div>
                             <div class="divInp divSenha">
-                                <input type="password" class="input senha" placeholder="Senha">
+                                <input type="password" class="input senha" th:field="*{senha}" placeholder="Senha">
+                                <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></small>
                             </div>
                             <div class="divBtnLogin">
                                 <button type="submit" id="btnLogin">Login</button>
