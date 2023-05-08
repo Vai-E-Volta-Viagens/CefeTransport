@@ -33,15 +33,19 @@
                     <div class="divTitle">
                         <h1>LOGIN</h1>
                     </div>
-                    <form action="/login" method="post" id="formLogin" th:object="${funcionario}">
+                    <form action="/login" method="post" id="formLogin" th:object="${funcionarioDto}">
                         <div class="divInputForm">
+                            <div class="divError errorEmail">
+                                <strong th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></strong>
+                            </div>
                             <div class="divInp divEmail">
                                 <input type="email" class="input email" th:field="*{email}" placeholder="E-mail">
-                                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></small>
+                            </div>
+                            <div class="divError errorEmail">
+                                <strong th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></strong>
                             </div>
                             <div class="divInp divSenha">
                                 <input type="password" class="input senha" th:field="*{senha}" placeholder="Senha">
-                                <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></small>
                             </div>
                             <div class="divBtnLogin">
                                 <button type="submit" id="btnLogin">Login</button>

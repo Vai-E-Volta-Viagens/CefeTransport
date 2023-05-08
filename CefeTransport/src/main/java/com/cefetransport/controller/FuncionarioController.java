@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,7 @@ public class FuncionarioController {
     public ModelAndView paginaLogin(HttpSession session) {
 
         session.invalidate();
-        mv.addObject("funcionario", new Funcionario());
+        mv.addObject("funcionarioDto", new FuncionarioDto());
         mv.setViewName("loginCadastro/login");
         return mv;
 
@@ -52,6 +53,8 @@ public class FuncionarioController {
 
     @PostMapping("/cadastrarFuncionario") 
     public String cadastrarFuncionario(@Valid Funcionario funcionario, BindingResult br) throws Exception {
+
+        mv.addObject("funcionario", new Funcionario());
 
         if (br.hasErrors()) {
             return "loginCadastro/cadastro";
@@ -72,9 +75,8 @@ public class FuncionarioController {
         if(br.hasErrors()) {
 
             return "loginCadastro/login";
-
         }
-        
+
         Funcionario funcionarioLogin = funcionarioService.loginFuncionario(funcionarioDto.getEmail(), Util.md5(funcionarioDto.getSenha()));
 
         if(funcionarioLogin == null) {
@@ -93,14 +95,6 @@ public class FuncionarioController {
 
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-
-        session.invalidate();
-        return "redirect:/";
-
-    }
-
     @GetMapping("/index")
     public ModelAndView paginaIndex(HttpSession session) throws UsuarioNaoLogadoException {
 
@@ -111,6 +105,14 @@ public class FuncionarioController {
         mv.addObject("funcionario", new Funcionario());
         mv.setViewName("home/index");
         return mv;
+
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+
+        session.invalidate();
+        return "redirect:/";
 
     }
 

@@ -17,7 +17,7 @@ public class FuncionarioDto {
     private String email;
 
     @NotBlank(message = "A Senha é obrigatória")
-    @Size(min = 2, message = "O Nome preciso ter no mínimo 2 caracteres")
+    @Size(min = 2, message = "A Senha precisa ter no mínimo 2 caracteres")
     private String senha;
 
 }
