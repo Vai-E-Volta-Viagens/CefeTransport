@@ -10,11 +10,23 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <!-- /Fontes -->
         <!-- CSS -->
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/cadastro.css">
         <!-- /CSS -->
         <title>CefeTransport</title>
     </head>
     <body>
+        <div id="filter">
+            <main>
+                <div class="divLogin">
+                    <div class="logo">
+                        <img src="imgs/logo/logo-editor-copy.svg" alt="CefeTransport">
+                    </div>
+                    <div class="cadastro">
+                        <a th:href="@{/}">Login</a>
+                    </div>
+                </div>
+            </main>
+        </div>
         <form action="/cadastrarFuncionario" method="post" th:object="${funcionario}">
             <input type="text" class="input inputNome" placeholder="Nome" th:field="*{nome}">
             <small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="form-text text-danger"></small>
