@@ -1,5 +1,3 @@
-/* Popup */
-
 * {
     margin: 0;
     padding: 0;
@@ -9,56 +7,166 @@
 body {
     width: 100vw;
     height: 100vh;
+	background-color: #bdbdbd;
     font-family: 'Open Sans', sans-serif;
 }
 
-.bemvindo {
+/* Menu */
+
+.navbar {
+	background-color: #232323;
+	width: 100vw;
+	height: 10vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0% 1.5%;
+}
+
+/* /Menu */
+
+/* Menu Hamburguer */
+
+.menu-hamburguer {
+	display: flex;
+}
+
+.menu-hamburguer .menu-faketrigger {
 	position: absolute;
-	bottom: 50px;
-	left: 50px;
-	width: max-content;
-	padding: 20px 15px;
-	border-radius: 10px;
-	background-color: #141619;
-	color: #f6f5f9;
-	box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
-	transform: translateY(30px);
+	top: 0;
+	width: 35px;
+	height: 35px;
+	margin-top: 1.5%;
 	opacity: 0;
-	visibility: hidden;
-	animation: fade-in 4s linear forwards;
-    z-index: 50;
-    user-select: none;
+	cursor: pointer;
+	z-index: 1000;
 }
 
-.progressNotificacao {
+.menu-hamburguer .menu-lines {
 	position: absolute;
-	left: 5px;
-	bottom: 5px;
-	width: calc(100% - 10px);
-	height: 3px;
-	transform: scaleX(0);
-	transform-origin: left;
-	background-image: linear-gradient(to right, #539bdb, #3250bf);
-	border-radius: inherit;
-	animation: load 3s 0.25s linear forwards;
-    z-index: 50;
+	top: 0;
+	width: 35px;
+	height: 35px;
+	margin-top: 1.5%;
+	z-index: 999;
 }
 
-@keyframes fade-in {
-	5% {
-		opacity: 1;
-		visibility: visible;
-		transform: translateY(0);
-	}
-	90% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-@keyframes load {
-	to {
-		transform: scaleX(1);
-	}
+.menu-hamburguer .menu-lines span {
+	display: block;
+	width: 35px;
+	height: 5px;
+	margin-bottom: 10px;
+	background-color: #999;
+	border-radius: 3px;
+	transition: all ease .2s;
 }
 
-/* /Popup */
+.menu-hamburguer .menu-faketrigger:checked ~ .menu-lines span {
+    background-color: #999;
+}
+
+.menu-hamburguer .menu-faketrigger:checked ~ .menu-lines span:nth-child(1) {
+    transform-origin: 0% 0%;
+    transform: rotate(45deg) scaleX(1.25);
+}
+
+.menu-hamburguer .menu-faketrigger:checked ~ .menu-lines span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburguer .menu-faketrigger:checked ~ .menu-lines span:nth-child(3) {
+    transform-origin: 0% 100%;
+    transform: rotate(-45deg) scaleX(1.25);
+}
+
+.menu-hamburguer ul {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300px;
+	height: 100vh;
+	padding-top: 100px;
+	background-color: #232323;
+	transition: all ease .2s;
+	list-style: none;
+	z-index: 998;
+}
+
+.menu-hamburguer .menu-faketrigger:checked ~ ul {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+.menu-hamburguer ul li {
+	padding: 10px 30px;
+}
+
+.menu-hamburguer ul li a {
+	text-decoration: none;
+	color: #999;
+	font-size: 22px;
+	transition: all ease .3s;
+}
+
+.menu-hamburguer ul li a:hover {
+	color: #555;
+}
+
+/* /Menu Hamburguer */
+
+/* FormLogout */
+
+.formLogout {
+	width: auto;
+	height: 8%;
+	margin: 0 2%;
+	margin-bottom: 10%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 2px solid #999;
+	border-radius: 10px;
+}
+
+#usuario {
+	margin-left: -6%;
+}
+
+#logout {
+	width: 30%;
+	height: 80%;
+	margin-right: 3%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(252, 41, 41);
+	border-radius: 10px;
+	font-size: 1.2rem;
+	color: white;
+	text-decoration: none;
+	transition: all ease-in-out .3s;
+}
+
+#logout:hover {
+	background-color: rgb(240, 81, 81);
+}
+
+/* /FormLogout */
+
+/* Logo NavBar */
+
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25%;
+	height: 100%;
+}
+
+.linkLogo {
+	text-decoration: none;
+}
+
+/* /Logo NavBar */

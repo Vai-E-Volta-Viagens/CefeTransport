@@ -4,9 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- /Fontes -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/exception.css">
+    <!-- /CSS -->
     <title>Usuário não Logado</title>
 </head>
 <body>
-    <h1>Você precisar estar logado</h1>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="" class="linkLogo">
+                <img src="/imgs/logo/logo-editor_1.png" alt="">
+                <img src="/imgs/logo/logo-editor_icone_1.png" alt="CefeTransport" class="imgLogo">
+            </a>
+        </div>
+    </nav>
+    <main>
+        <h1>Você precisar estar logado</h1>
+        <a th:href="@{/}">Login</a>
+    </main>
 </body>
 </html>

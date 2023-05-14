@@ -2,6 +2,7 @@ package com.cefetransport.controller;
 
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -106,20 +107,18 @@ public class FuncionarioController {
 
     }
 
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
+    @GetMapping("/logout")
+    public String logout() {
 
-        session.invalidate();
         return "redirect:/";
 
     }
 
     @ExceptionHandler(UsuarioNaoLogadoException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ModelAndView handleUsuarioNaoLogadoException() {
-
-        mv.setViewName("exception/exception");
-        return mv;
+    public String handleUsuarioNaoLogadoException() {
+        
+        return "exception/exception";
 
     }
 

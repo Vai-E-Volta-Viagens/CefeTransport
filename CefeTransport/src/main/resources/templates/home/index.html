@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <!-- /Fontes -->
     <!-- CSS -->
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- /CSS -->
     <title>CefeTransport</title>
@@ -19,8 +20,11 @@
         <p>Bem vindo, <span th:text="${session.funcionarioLogado.nome}"></span></p>
         <span class="progressNotificacao"></span>
     </div>
-    <nav class="menu">
-        
-    </nav>
+    <nav th:replace="~{fragmentos/fragmentos :: header}"></nav>
+
+    <main>
+
+    </main>
+
 </body>
 </html>
