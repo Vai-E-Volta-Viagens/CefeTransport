@@ -2,7 +2,6 @@ package com.cefetransport.controller;
 
 import java.security.NoSuchAlgorithmException;
 
-import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
