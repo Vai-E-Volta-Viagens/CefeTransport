@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Fontes -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <!-- /Fontes -->
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/cadastro.css">
+        <!-- /CSS -->
+        <title>CefeTransport</title>
+    </head>
+    <body>
+        <form action="/cadastrarFuncionario" method="post" th:object="${funcionario}">
+            <input type="text" class="input inputNome" placeholder="Nome" th:field="*{nome}">
+            <small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="form-text text-danger"></small>
+            <input type="email" class="input inputEmail" placeholder="E-mail" th:field="*{email}">
+            <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></small>
+            <input type="password" class="input inputSenha" placeholder="Senha" th:field="*{senha}">
+            <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></small>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </body>
+</html>

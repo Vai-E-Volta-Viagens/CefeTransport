@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- /Fontes -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- /CSS -->
+    <title>CefeTransport</title>
+</head>
+<body>
+    <nav class="navbar" th:fragment="header">
+        <div class="menu-hamburguer">
+            <input type="checkbox" class="menu-faketrigger">
+            <div class="menu-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul>
+                <div>
+                    <li><a th:href="@{/index}">Home</a></li>
+                    <li><a href="">Cadastrar Modal</a></li>
+                    <li><a href="">Modais Cadastrados</a></li>
+                </div>
+                <form class="formLogout" method="get">
+                    <li id="usuario"><a href="" th:text="${session.funcionarioLogado.nome}"></a></li>
+                    <a id="logout" th:href="@{/logout}">Sair</a>
+                </form>
+            </ul>
+        </div>
+        <div class="logo">
+            <a href="" class="linkLogo">
+                <img src="/imgs/logo/logo-editor_1.png" alt="">
+                <img src="/imgs/logo/logo-editor_icone_1.png" alt="CefeTransport" class="imgLogo">
+            </a>
+        </div>
+        <div></div>
+    </nav>
+</body>
+</html>

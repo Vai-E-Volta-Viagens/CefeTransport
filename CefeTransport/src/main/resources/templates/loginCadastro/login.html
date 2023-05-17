@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Fontes -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <!-- /Fontes -->
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/login.css">
+        <!-- /CSS -->
+        <title>CefeTransport - Login</title>
+    </head>
+    <body>
+        <div id="filter">
+            <main>
+                <div class="divCadastro">
+                    <div class="logo">
+                        <img src="imgs/logo/logo-editor-copy.svg" alt="CefeTransport">
+                    </div>
+                    <div class="cadastro">
+                        <a th:href="@{cadastro}">Cadastre-se</a>
+                    </div>
+                </div>
+                <div class="divLogin">
+                    <div class="divTitle">
+                        <h1>LOGIN</h1>
+                    </div>
+                    <form action="/login" method="post" id="formLogin" th:object="${funcionarioDto}">
+                        <div class="divInputForm">
+                            <div class="divError errorEmail">
+                                <strong th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></strong>
+                            </div>
+                            <div class="divInp divEmail">
+                                <input type="email" class="input email" th:field="*{email}" placeholder="E-mail">
+                            </div>
+                            <div class="divError errorEmail">
+                                <strong th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></strong>
+                            </div>
+                            <div class="divInp divSenha">
+                                <input type="password" class="input senha" th:field="*{senha}" placeholder="Senha">
+                            </div>
+                            <div class="divBtnLogin">
+                                <button type="submit" id="btnLogin">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>

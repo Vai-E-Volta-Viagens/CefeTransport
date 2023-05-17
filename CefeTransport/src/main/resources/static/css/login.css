@@ -1,0 +1,178 @@
+:root {
+    --cor-principal: #4D3EFC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../imgs/background_logo.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: 1;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, .3);
+    z-index: 2;
+}
+
+main {
+    display: flex;
+    width: 45%;
+    height: 60%;
+    border: 2px solid var(--cor-principal);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255, .5);
+}
+
+.divCadastro {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 40%;
+    border-right: 2px solid #00000093;
+}
+
+.logo {
+    width: 100%;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.cadastro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadastro a {
+    padding: 4%;
+    background-color: var(--cor-principal);
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: all .3s;
+    font-size: 1.2rem;
+}
+
+.cadastro a:hover {
+    background-color: #6456ff;
+}
+
+.divLogin {
+    width: 60%;
+    height: 100%;
+}
+
+.divTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    border-bottom: 2px solid #00000093;
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+#formLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.divInputForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.divError {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: red;
+    font-size: .92rem;
+}
+
+.divEmail {
+    margin-bottom: 5%;
+}
+
+.divInp {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+    height: 20%;
+    overflow: hidden;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.divInp input {
+    background-color: transparent;
+    padding: 4%;
+    border: 2px solid #00000093;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    outline: none;
+    color: black;
+}
+
+.divInp input::placeholder {
+    font-size: 1.2rem;
+    color: black;
+}
+
+.divBtnLogin {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#btnLogin {
+    width: 26%;
+    height: 65%;
+    margin-top: 3%;
+    background-color: var(--cor-principal);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: all .3s;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#btnLogin:hover {
+    background-color: #6456ff;
+}
