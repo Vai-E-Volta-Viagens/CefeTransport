@@ -14,7 +14,7 @@
 	opacity: 0;
 	visibility: hidden;
 	animation: fade-in 4s linear forwards;
-    z-index: 50;
+    z-index: 900;
     user-select: none;
 }
 
@@ -29,7 +29,7 @@
 	background-image: linear-gradient(to right, #539bdb, #3250bf);
 	border-radius: inherit;
 	animation: load 3s 0.25s linear forwards;
-    z-index: 50;
+    z-index: 900;
 }
 
 @keyframes fade-in {
@@ -54,6 +54,45 @@
 
 /* Main */
 
-
+main {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
 /* /Main */
+
+/* Section */
+
+section {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+section a {
+	background-color: #3250bf;
+	width: 15%;
+	padding: 2%;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 1.3rem;
+	text-decoration: none;
+	color: #f6f5f9;
+	transition: all ease .5s;
+}
+
+section a:hover {
+	background-color: #5b6cac;
+	transition: all ease .5s;
+}
+
+section .cadModal {
+	margin-right: 5%;
+}
+
+/* /Section */

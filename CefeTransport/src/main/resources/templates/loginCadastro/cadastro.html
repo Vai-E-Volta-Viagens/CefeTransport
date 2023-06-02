@@ -18,8 +18,13 @@
         <form action="/cadastrarFuncionario" method="post" th:object="${funcionario}">
             <input type="text" class="input inputNome" placeholder="Nome" th:field="*{nome}">
             <small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="form-text text-danger"></small>
+
+            <input type="text" class="input inputSobrenome" placeholder="Sobrenome" th:field="*{sobrenome}">
+            <small th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}" class="form-text text-danger"></small>
+
             <input type="email" class="input inputEmail" placeholder="E-mail" th:field="*{email}">
             <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></small>
+
             <input type="password" class="input inputSenha" placeholder="Senha" th:field="*{senha}">
             <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></small>
             <button type="submit">Cadastrar</button>

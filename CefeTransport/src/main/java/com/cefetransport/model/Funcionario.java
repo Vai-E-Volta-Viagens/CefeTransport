@@ -13,26 +13,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "funcionario")
+@Table(name = "funcionarios")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Funcionario {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O Nome é obrigatório")
-    @Size(min = 2, message = "O Nome preciso ter no mínimo 2 caracteres")
+    @NotBlank(message = "O 'Nome' é obrigatório")
+    @Size(min = 2, message = "O 'Nome' precisa ter no mínimo 2 caracteres")
     private String nome;
 
-    @NotBlank(message = "O E-mail é obrigatório")
-    @Email
+    @NotBlank(message = "O 'Sobrenome' é obrigatório")
+    @Size(min = 2, message = "O 'Sobrenome' precisa ter no mínimo 2 caracteres")
+    private String sobrenome;
+
+    @NotBlank(message = "O 'E-mail' é obrigatório")
+    @Email(message = "Preencha o 'E-mail' corretamente")
     private String email;
 
-    @NotBlank(message = "A Senha é obrigatória")
-    @Size(min = 2, message = "O Nome preciso ter no mínimo 2 caracteres")
+    @NotBlank(message = "A 'Senha' é obrigatória")
+    @Size(min = 3, message = "A 'Senha' preciso ter no mínimo 3 caracteres")
     private String senha;
 
 }
