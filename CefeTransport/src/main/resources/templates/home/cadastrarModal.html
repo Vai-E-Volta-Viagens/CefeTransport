@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- /Fontes -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/cadastrarModal.css">
+    <!-- <link rel="stylesheet" href="css/cadastrarModal.css"> -->
+    <!-- /CSS -->
+    <title>CefeTransport</title>
+</head>
+<body>
+
+    <nav th:replace="~{fragmentos/fragmentos :: header}"></nav>
+    
+    <main>
+
+        <div id="divTitle">
+            <h1 id="titleCadastrarAluno">Cadastrar Modal</h1>
+        </div>
+
+        <form action="/modal/cadastrarModal" method="post" th:object="${modal}" id="form">
+
+            <div class="divInput inpTipo">
+
+                <label for="selTipo">Selecione o tipo:</label>
+                <select name="selTipo" class="select selTipo" th:field="*{tipo}">
+
+                    <option th:each="tipo : ${T(com.cefetransport.enums.Tipo).values()}" th:value="${tipo}" th:text="${tipo}"></option>
+
+                </select>
+
+            </div>
+
+            <div class="divInput inpRegistro">
+
+                <label for="inpRegistro">Insira o código de registro:</label>
+                <input type="text" name="inpRegistro" class="inputRegistro" th:field="*{registro}">
+
+            </div>
+
+            <div class="divInput inpVagas">
+            
+                <label for="inpVagas">Insira a quantidade de vagas:</label>
+                <input type="text" name="inpVagas" class="inputVagas" th:field="*{vagas}">
+            
+            </div>
+
+            <div class="divInput inpStatus">
+
+                <label for="inpStatus">Selecione o status atual:</label>
+                <select name="inpStatus" class="select selStatus" th:field="*{status}">
+
+                    <option th:each="status : ${T(com.cefetransport.enums.Status).values()}" th:value="${status}" th:text="${status}"></option>
+
+                </select>
+
+            </div>
+
+            <div class="errors" th:if="${#fields.hasErrors('tipo')}">
+
+                <strong th:errors="*{tipo}"></strong>
+
+            </div>
+
+            <div class="errors" th:if="${#fields.hasErrors('registro')}">
+
+                <strong th:errors="*{registro}"></strong>
+
+            </div>
+
+            <div class="errors" th:if="${#fields.hasErrors('vagas')}">
+
+                <strong th:errors="*{vagas}"></strong>
+
+            </div>
+
+            <div class="errors" th:if="${#fields.hasErrors('status')}">
+
+                <strong th:errors="*{status}"></strong>
+
+            </div>
+
+            <button type="submit" id="btnCadastrar">Cadastrar</button>
+
+        </form>
+
+    </main>
+
+</body>
+</html>

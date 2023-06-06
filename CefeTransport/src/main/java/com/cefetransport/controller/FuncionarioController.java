@@ -16,7 +16,6 @@ import com.cefetransport.dto.FuncionarioDto;
 import com.cefetransport.exception.UsuarioNaoLogadoException;
 import com.cefetransport.model.Funcionario;
 import com.cefetransport.service.FuncionarioService;
-import com.cefetransport.service.ServiceException;
 import com.cefetransport.util.Util;
 
 import jakarta.servlet.http.HttpSession;
@@ -50,7 +49,7 @@ public class FuncionarioController {
 
     }
 
-    @PostMapping("/cadastrarFuncionario") 
+    @PostMapping("/cadastrarFuncionario")
     public String cadastrarFuncionario(@Valid Funcionario funcionario, BindingResult br) throws Exception {
 
         mv.addObject("funcionario", new Funcionario());
@@ -66,7 +65,7 @@ public class FuncionarioController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session) throws NoSuchAlgorithmException, ServiceException {
+    public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session) throws NoSuchAlgorithmException {
 
         mv.addObject("funcionario", new Funcionario());
 

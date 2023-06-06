@@ -74,7 +74,7 @@ section {
 	align-items: center;
 }
 
-section a {
+.btn {
 	background-color: #3250bf;
 	width: 15%;
 	padding: 2%;
@@ -86,7 +86,7 @@ section a {
 	transition: all ease .5s;
 }
 
-section a:hover {
+.btn:hover {
 	background-color: #5b6cac;
 	transition: all ease .5s;
 }

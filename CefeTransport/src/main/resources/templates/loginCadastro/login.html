@@ -29,6 +29,7 @@
                     <div class="divTitle">
                         <h1>LOGIN</h1>
                     </div>
+                    <small th:if="funcionarioLogin == null" th:text="${msg}"></small>
                     <form action="/login" method="post" id="formLogin" th:object="${funcionarioDto}">
                         <div class="divInputForm">
                             <div class="divError errorEmail">
