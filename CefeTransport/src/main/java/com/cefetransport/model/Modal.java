@@ -1,5 +1,8 @@
 package com.cefetransport.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.cefetransport.enums.Status;
 import com.cefetransport.enums.Tipo;
 
@@ -10,8 +13,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +32,6 @@ public class Modal {
     private Long id;
 
     @NotBlank(message = "Insira o 'Tipo' do modal")
-    @Size(min = 2, message = "O campo 'Tipo' precisa ter no mínimo 2 caracteres")
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
 
@@ -40,8 +40,8 @@ public class Modal {
     private String registro;
 
     @NotBlank(message = "Insira a quantidade de 'Vagas' do modal")
-    @Size(min = 8, message = "O veículo precisa ter no mínimo 8 'Vagas'")
-    private Integer vagas;
+    @Size(min = 1, message = "O campo 'Vagas' precisar ter no mínimo 1 caracter")
+    private int vagas;
 
     @NotBlank(message = "Selecione o 'Status' atual do modal")
     @Enumerated(EnumType.STRING)

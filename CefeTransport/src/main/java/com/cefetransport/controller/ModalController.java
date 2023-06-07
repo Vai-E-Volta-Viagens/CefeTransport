@@ -1,17 +1,23 @@
 package com.cefetransport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cefetransport.exception.UsuarioNaoLogadoException;
 import com.cefetransport.model.Modal;
 import com.cefetransport.service.ModalService;
 
-import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpSession;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/modal")
@@ -23,31 +29,45 @@ public class ModalController {
     private ModalService modalService;
 
     @GetMapping("/cadastrar")
-    public ModelAndView paginaCadastrarModal() {
+    public ModelAndView paginaCadastrarModal(HttpSession session) throws UsuarioNaoLogadoException {
 
-        mv.setViewName("home/cadastrarModal");
+        if (!(session.getAttribute("funcionarioLogado") != null)) {
+            
+            throw new UsuarioNaoLogadoException();
+
+        }
+
         mv.addObject("modal", new Modal());
+        mv.setViewName("home/cadastrarModal");
 
         return mv;
 
     }
 
     @PostMapping("/cadastrarModal")
-    public ModelAndView cadastrarModel(@Valid Modal modal, BindingResult br) {
+    public String cadastrarModel(@Valid Modal modal, BindingResult br) throws Exception {
 
         mv.addObject("modal", new Modal());
 
         if (br.hasErrors()) {
 
-            mv.setViewName("home/cadastrarModal");
+            System.out.println("Passou aquiiiii");
+            return "home/cadastrarModal";
 
+        } else {
+          
+            modalService.cadastrarModal(modal);
+            return "redirect:/index";
+          
         }
 
-        modalService.cadastrarModal(modal);
+    }
 
-        mv.setViewName("redirect:/index");
+    @ExceptionHandler(UsuarioNaoLogadoException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public String handleUsuarioNaoLogadoException() {
 
-        return mv;
+        return "exception/exception";
 
     }
 
