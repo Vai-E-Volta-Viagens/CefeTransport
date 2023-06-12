@@ -9,7 +9,7 @@ main {
 
 #divTitle {
 
-    background-color: rgb(255, 255, 255, .3);
+    background-color: rgb(255, 255, 255, .5);
     width: 60%;
     height: 7%;
     margin-top: 2%;
@@ -65,7 +65,7 @@ main {
     border: 1px solid #232323;
     border-radius: 7px;
     margin-top: 2%;
-    background-color: rgb(255, 255, 255, .3);
+    background-color: rgb(255, 255, 255, .5);
     color: #232323;
 
 }

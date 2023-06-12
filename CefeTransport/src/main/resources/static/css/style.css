@@ -7,7 +7,13 @@
 body {
     width: 100vw;
     height: 100vh;
-	background-color: #bdbdbd;
+	/* background-color: #bdbdbd; */
+	background-color: rgb(189, 189, 189, .7);
+	background-blend-mode: hue;
+	background-image: url("../imgs/background_logo.jpg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
     font-family: 'Open Sans', sans-serif;
 }
 
