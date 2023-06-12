@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -51,7 +52,7 @@ public class ModalController {
     }
 
     @PostMapping("/cadastrarModal")
-    public String cadastrarModel(@RequestBody @Valid Modal modal, BindingResult br) throws Exception {
+    public String cadastrarModel(@Valid Modal modal, BindingResult br) throws Exception {
 
         mv.addObject("modal", new Modal());
 
@@ -62,13 +63,13 @@ public class ModalController {
         } else {
 
             modalService.cadastrarModal(modal);
-            return "redirect:/modal/modaisCadastrados";
+            return "redirect:/modal/";
 
         }
 
     }
     
-    @GetMapping("/modaisCadastrados")
+    @GetMapping("/")
     public ModelAndView modaisCadastrados(HttpSession session) throws UsuarioNaoLogadoException {
 
         if (!(session.getAttribute("funcionarioLogado") != null)) {
@@ -84,19 +85,36 @@ public class ModalController {
 
     }
 
-    @GetMapping("/alterar")
-    public ModelAndView paginaAlterarModal(HttpSession session) throws UsuarioNaoLogadoException {
+    @GetMapping("/alterar/{id}")
+    public ModelAndView paginaAlterarModal(HttpSession session, @PathVariable("id") Long id, Modal modal)
+            throws UsuarioNaoLogadoException {
 
         if (!(session.getAttribute("funcionarioLogado") != null)) {
 
             throw new UsuarioNaoLogadoException();
 
         }
-        
-        mv.addObject("modal", new Modal());
+
+        mv.addObject("modal", modalService.buscarModalPorId(id));
         mv.setViewName("home/alterarModal");
 
         return mv;
+
+    }
+    
+    @PostMapping("/alterarModal")
+    public String alterarModal(@Valid Modal modal, BindingResult br) {
+
+        if (br.hasErrors()) {
+
+            return "home/alterarModal";
+
+        } else {
+
+            modalService.alterarModal(modal);
+            return "redirect:/modal/";
+
+        }
 
     }
 
@@ -105,7 +123,7 @@ public class ModalController {
 
         modalService.deletarModal(id);
 
-        return "redirect:/modal/modaisCadastrados";
+        return "redirect:/modal/";
 
     }
 

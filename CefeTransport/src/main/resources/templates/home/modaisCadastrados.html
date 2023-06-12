@@ -44,7 +44,7 @@
                 <td class="td tdVagas" th:text="${modal.vagas}"></td>
                 <td class="td tdAcoes">
             
-                    <a class="btn btn-alert" th:href="@{/modal/alterar}">
+                    <a class="btn btn-alert" th:href="@{/modal/alterar/{id}(id=${modal.id})}">
                         <i class="fas fa-edit"></i> Editar
                     </a>
                     

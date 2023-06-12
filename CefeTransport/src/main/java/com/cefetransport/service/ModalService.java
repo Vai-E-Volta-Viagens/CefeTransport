@@ -1,5 +1,7 @@
 package com.cefetransport.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,15 @@ public class ModalService {
 
     }
 
-    public void alterarModal(Long id, Modal modal) {
+    public Modal buscarModalPorId(Long id) {
+
+        return modalRepository
+        .findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("Dado de cadastro não encontrado"));
+
+    }
+
+    public void alterarModal(Modal modal) {
 
         cadastrarModal(modal);
 

@@ -25,31 +25,28 @@
             <h1 id="titleCadastrarAluno">Cadastrar Modal</h1>
         </div>
 
-        <form action="/modal/cadastrarModal" method="post" th:object="${modal}" id="form">
+        <form action="/modal/alterarModal" method="post" th:object="${modal}" id="form">
+
+            <input type="number" th:field="*{id}" class="id">
 
             <div class="divInput inpTipo">
 
                 <label for="selTipo">Selecione o tipo:</label>
-                <input type="text" name="inpTipo" class="inputTipo" th:field="*{tipo}" readonly>
-                <!-- <select name="selTipo" class="select selTipo" th:field="*{tipo}">
-
-                    <option th:each="tipo : ${T(com.cefetransport.enums.Tipo).values()}" th:value="${tipo}" th:text="${tipo}"></option>
-
-                </select> -->
+                <input type="text" name="inpTipo" class="inputTipo" th:field="*{tipo}" th:value="${tipo}" readonly>
 
             </div>
 
             <div class="divInput inpRegistro">
 
                 <label for="inpRegistro">Insira o código de registro:</label>
-                <input type="text" name="inpRegistro" class="inputRegistro" th:field="*{registro}" readonly>
+                <input type="text" name="inpRegistro" class="inputRegistro" th:field="*{registro}" th:value="${registro}" readonly>
 
             </div>
 
             <div class="divInput inpVagas">
             
                 <label for="inpVagas">Insira a quantidade de vagas:</label>
-                <input type="number" name="inpVagas" class="inputVagas" th:field="*{vagas}" readonly>
+                <input type="number" name="inpVagas" class="inputVagas" th:field="*{vagas}" th:value="${vagas}" readonly>
             
             </div>
 
