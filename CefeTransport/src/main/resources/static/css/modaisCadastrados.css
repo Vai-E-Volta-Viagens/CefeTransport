@@ -15,6 +15,7 @@ main {
     align-items: center;
     flex-direction: column;
     border: 1px solid #232323;
+    overflow: auto;
 }
 
 tbody {
@@ -43,10 +44,31 @@ tbody {
 
 .btn {
     border-right: none;
+    text-decoration: none;
+    transition: all .5s;
 }
 
 .btn-danger {
     margin-left: 10%;
+    padding: 2%;
+    color: red;
+}
+
+.btn-danger:hover {
+    background-color: red;
+    color: white;
+    border-radius: 7px;
+}
+
+.btn-alert {
+    padding: 2%;
+    color: #e1900f;
+}
+
+.btn-alert:hover {
+    background-color: #e1900f;
+    color: white;
+    border-radius: 7px;
 }
 
 .td {
@@ -60,18 +82,6 @@ tbody {
 
 .tdAcoes {
     border-right: none;
-}
-
-.btn {
-    text-decoration: none;
-}
-
-.btn-alert {
-    color: #e1900f;
-}
-
-.btn-danger {
-    color: red;
 }
 
 /* /Table */
