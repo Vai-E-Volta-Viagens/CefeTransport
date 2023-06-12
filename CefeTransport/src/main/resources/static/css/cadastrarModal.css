@@ -9,7 +9,7 @@ main {
 
 #divTitle {
 
-    background-color: white;
+    background-color: rgb(255, 255, 255, .3);
     width: 60%;
     height: 7%;
     margin-top: 2%;
@@ -82,7 +82,7 @@ label {
 
 #btnCadastrar {
 
-    background-color: white;
+    background-color: rgb(255, 255, 255, .3);
     padding: 1%;
     width: 15%;
     margin-top: 2%;

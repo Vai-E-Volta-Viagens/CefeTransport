@@ -27,7 +27,7 @@
                 <div>
                     <li><a th:href="@{/index}">Home</a></li>
                     <li><a th:href="@{/modal/cadastrar}">Cadastrar Modal</a></li>
-                    <li><a href="">Modais Cadastrados</a></li>
+                    <li><a th:href="@{/modal/modaisCadastrados}">Modais Cadastrados</a></li>
                 </div>
                 <form class="formLogout" method="get">
                     <a id="logout" th:href="@{/logout}">Sair</a>
@@ -36,7 +36,7 @@
         </div>
         
         <div class="logo">
-            <a href="" class="linkLogo">
+            <a th:href="@{/index}" class="linkLogo">
                 <img src="/imgs/logo/logo-editor_1.png" alt="">
                 <img src="/imgs/logo/logo-editor_icone_1.png" alt="CefeTransport" class="imgLogo">
             </a>

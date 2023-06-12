@@ -18,4 +18,10 @@ public class ModalService {
 
     }
 
+    public void modaisCadastrados() {
+
+        modalRepository.findAll();
+
+    }
+
 }
