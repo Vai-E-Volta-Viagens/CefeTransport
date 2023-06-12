@@ -56,7 +56,6 @@ public class ModalController {
 
         if (br.hasErrors()) {
 
-            System.out.println("Passou aquiiiii");
             return "home/cadastrarModal";
 
         } else {
