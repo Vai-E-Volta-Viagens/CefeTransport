@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,7 +51,7 @@ public class ModalController {
     }
 
     @PostMapping("/cadastrarModal")
-    public String cadastrarModel(@Valid Modal modal, BindingResult br) throws Exception {
+    public String cadastrarModel(@RequestBody @Valid Modal modal, BindingResult br) throws Exception {
 
         mv.addObject("modal", new Modal());
 
@@ -83,10 +84,26 @@ public class ModalController {
 
     }
 
+    @GetMapping("/alterar")
+    public ModelAndView paginaAlterarModal(HttpSession session) throws UsuarioNaoLogadoException {
+
+        if (!(session.getAttribute("funcionarioLogado") != null)) {
+
+            throw new UsuarioNaoLogadoException();
+
+        }
+        
+        mv.addObject("modal", new Modal());
+        mv.setViewName("home/alterarModal");
+
+        return mv;
+
+    }
+
     @GetMapping("/deletar/{id}")
     public String deletarModal(@PathVariable("id") Long id) {
 
-        modalRepository.deleteById(id);
+        modalService.deletarModal(id);
 
         return "redirect:/modal/modaisCadastrados";
 

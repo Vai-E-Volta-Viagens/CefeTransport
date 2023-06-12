@@ -24,4 +24,16 @@ public class ModalService {
 
     }
 
+    public void alterarModal(Long id, Modal modal) {
+
+        cadastrarModal(modal);
+
+    }
+
+    public void deletarModal(Long id) {
+
+        modalRepository.deleteById(id);
+
+    }
+
 }
