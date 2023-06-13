@@ -15,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cefetransport.exception.UsuarioNaoLogadoException;
 import com.cefetransport.model.Modal;
 import com.cefetransport.repository.ModalRepository;
+import com.cefetransport.service.AtividadeService;
 import com.cefetransport.service.ModalService;
 
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpSession;
-
-import javax.validation.Valid;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/modal")
@@ -31,13 +33,22 @@ public class ModalController {
     private ModalService modalService;
 
     @Autowired
+    private AtividadeService atividadeService;
+
+    @Autowired
     private ModalRepository modalRepository;
+
+    @Autowired
+    private FuncionarioController funcionarioController;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @GetMapping("/cadastrar")
     public ModelAndView paginaCadastrarModal(HttpSession session) throws UsuarioNaoLogadoException {
 
         if (!(session.getAttribute("funcionarioLogado") != null)) {
-            
+
             throw new UsuarioNaoLogadoException();
 
         }
@@ -50,7 +61,7 @@ public class ModalController {
     }
 
     @PostMapping("/cadastrarModal")
-    public String cadastrarModel(@Valid Modal modal, BindingResult br) throws Exception {
+    public String cadastrarModal(@Valid Modal modal, BindingResult br, HttpSession session) throws Exception {
 
         mv.addObject("modal", new Modal());
 
@@ -60,7 +71,10 @@ public class ModalController {
 
         } else {
 
-            modalService.cadastrarModal(modal);
+            Modal modalSalvo = modalService.cadastrarModal(modal);
+
+            atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalSalvo, "Cadastro de Modal");
+
             return "redirect:/modal/";
 
         }
@@ -100,6 +114,7 @@ public class ModalController {
 
     }
     
+    @Transactional
     @PostMapping("/alterarModal")
     public String alterarModal(@Valid Modal modal, BindingResult br) {
 
@@ -110,6 +125,11 @@ public class ModalController {
         } else {
 
             modalService.alterarModal(modal);
+
+            Modal modalAtual = entityManager.merge(modal);
+
+            atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalAtual, "Alteração de Modal");
+
             return "redirect:/modal/";
 
         }
@@ -119,7 +139,13 @@ public class ModalController {
     @GetMapping("/deletar/{id}")
     public String deletarModal(@PathVariable("id") Long id) {
 
+        Modal modal = modalService.buscarModalPorId(id);
+
+        atividadeService.deletarAtividade(atividadeService.buscarAtividadePorId(id));
+
         modalService.deletarModal(id);
+
+        atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modal, "Exclusão de Modal");
 
         return "redirect:/modal/";
 

@@ -1,6 +1,7 @@
 package com.cefetransport.controller;
 
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import com.cefetransport.service.FuncionarioService;
 import com.cefetransport.util.Util;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.Getter;
 
 import javax.validation.Valid;
 
@@ -27,6 +29,9 @@ public class FuncionarioController {
 
     @Autowired
     FuncionarioService funcionarioService;
+
+    @Getter
+    Funcionario entidadeLogado;
 
     ModelAndView mv = new ModelAndView();
     
@@ -59,13 +64,16 @@ public class FuncionarioController {
         }
 
         funcionarioService.salvarFuncionario(funcionario);
-        
+
         return "redirect:/";
 
     }
 
     @PostMapping("/login")
-    public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session) throws NoSuchAlgorithmException {
+    public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session)
+            throws NoSuchAlgorithmException {
+        
+        System.out.println(LocalDateTime.now());
 
         mv.addObject("funcionario", new Funcionario());
 
@@ -85,6 +93,8 @@ public class FuncionarioController {
         } else {
 
             session.setAttribute("funcionarioLogado", funcionarioLogin);
+
+            entidadeLogado = funcionarioLogin;
 
             return "redirect:/index";
 

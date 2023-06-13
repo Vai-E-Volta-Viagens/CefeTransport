@@ -1,7 +1,5 @@
 package com.cefetransport.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +12,9 @@ public class ModalService {
     @Autowired
     private ModalRepository modalRepository;
 
-    public void cadastrarModal(Modal modal) {
+    public Modal cadastrarModal(Modal modal) {
 
-        modalRepository.save(modal);
+        return modalRepository.save(modal);
 
     }
 
