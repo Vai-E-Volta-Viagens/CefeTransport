@@ -1,7 +1,6 @@
 package com.cefetransport.controller;
 
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cefetransport.dto.FuncionarioDto;
 import com.cefetransport.exception.UsuarioNaoLogadoException;
 import com.cefetransport.model.Funcionario;
+import com.cefetransport.repository.AtividadeRepository;
 import com.cefetransport.service.FuncionarioService;
 import com.cefetransport.util.Util;
 
@@ -29,6 +29,9 @@ public class FuncionarioController {
 
     @Autowired
     FuncionarioService funcionarioService;
+
+    @Autowired
+    private AtividadeRepository atividadeRepository;
 
     @Getter
     Funcionario entidadeLogado;
@@ -72,8 +75,6 @@ public class FuncionarioController {
     @PostMapping("/login")
     public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session)
             throws NoSuchAlgorithmException {
-        
-        System.out.println(LocalDateTime.now());
 
         mv.addObject("funcionario", new Funcionario());
 
@@ -119,6 +120,23 @@ public class FuncionarioController {
     public String logout() {
 
         return "redirect:/";
+
+    }
+
+    @GetMapping("/atividades")
+    public ModelAndView paginaAtividades(HttpSession session) throws UsuarioNaoLogadoException {
+
+        if (!(session.getAttribute("funcionarioLogado") != null)) {
+
+            throw new UsuarioNaoLogadoException();
+
+        }
+
+        mv.addObject("atividadesList", atividadeRepository.findAll());
+
+        mv.setViewName("home/atividades.html");
+
+        return mv;
 
     }
 

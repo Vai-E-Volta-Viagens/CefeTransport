@@ -44,7 +44,7 @@ public class AtividadeService {
     }
 
     public Long buscarAtividadePorId(Long id) {
-        
+
         return atividadeRepository.buscarIdAtividadePorIdModal(id);
 
     }
