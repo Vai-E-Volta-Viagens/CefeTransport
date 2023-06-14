@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cefetransport.dto.FuncionarioDto;
+import com.cefetransport.exception.EmailExistException;
 import com.cefetransport.exception.UsuarioNaoLogadoException;
 import com.cefetransport.model.Funcionario;
 import com.cefetransport.repository.AtividadeRepository;
@@ -58,22 +60,34 @@ public class FuncionarioController {
     }
 
     @PostMapping("/cadastrarFuncionario")
-    public String cadastrarFuncionario(@Valid Funcionario funcionario, BindingResult br) throws Exception {
+    public String cadastrarFuncionario(@Valid Funcionario funcionario, BindingResult br, Model model) throws Exception {
 
         mv.addObject("funcionario", new Funcionario());
 
         if (br.hasErrors()) {
             return "loginCadastro/cadastro";
+        } else {
+
+            try {
+                
+                funcionarioService.salvarFuncionario(funcionario);
+
+                return "redirect:/";
+
+            } catch (EmailExistException e) {
+                
+                model.addAttribute("erro", e.getMessage());
+
+                return "loginCadastro/cadastro";
+
+            }
+
         }
-
-        funcionarioService.salvarFuncionario(funcionario);
-
-        return "redirect:/";
 
     }
 
     @PostMapping("/login")
-    public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session)
+    public String login(@Valid FuncionarioDto funcionarioDto, BindingResult br, HttpSession session, Model model)
             throws NoSuchAlgorithmException {
 
         mv.addObject("funcionario", new Funcionario());
@@ -85,9 +99,9 @@ public class FuncionarioController {
 
         Funcionario funcionarioLogin = funcionarioService.loginFuncionario(funcionarioDto.getEmail(), Util.md5(funcionarioDto.getSenha()));
 
-        if(funcionarioLogin == null) {
-
-            mv.addObject("msg", "Funcionario não encontrado. Tente novamente!");
+        if (funcionarioLogin == null) {
+            
+            model.addAttribute("erro", "Funcionario não encontrado. Tente novamente!");
 
             return "loginCadastro/login";
 

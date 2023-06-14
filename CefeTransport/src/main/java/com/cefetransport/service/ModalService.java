@@ -1,8 +1,12 @@
 package com.cefetransport.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cefetransport.exception.ModalExistRegistroException;
+import com.cefetransport.exception.ModalNoExistException;
 import com.cefetransport.model.Modal;
 import com.cefetransport.repository.ModalRepository;
 
@@ -14,7 +18,17 @@ public class ModalService {
 
     public Modal cadastrarModal(Modal modal) {
 
-        return modalRepository.save(modal);
+        boolean existeModalComRegistro = modalRepository.existsByRegistro(modal.getRegistro());
+
+        if (existeModalComRegistro) {
+            
+            throw new ModalExistRegistroException("Já existe um modal cadastrado com registro: " + modal.getRegistro());
+
+        } else {
+
+            return modalRepository.save(modal);
+
+        }
 
     }
 
@@ -34,13 +48,20 @@ public class ModalService {
 
     public void alterarModal(Modal modal) {
 
-        cadastrarModal(modal);
+        // cadastrarModal(modal);
 
-    }
+        Optional<Modal> modalAlterar = modalRepository.findById(modal.getId());
 
-    public void deletarModal(Long id) {
+        if (modalAlterar != null) {
+            
+            modal.setStatus(modal.getStatus());
+            modalRepository.save(modalAlterar.get());
 
-        modalRepository.deleteById(id);
+        } else {
+
+            throw new ModalNoExistException("Modal não encontrado com o ID: " + modal.getId());
+
+        }
 
     }
 

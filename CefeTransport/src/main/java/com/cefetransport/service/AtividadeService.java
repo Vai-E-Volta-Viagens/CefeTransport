@@ -37,16 +37,4 @@ public class AtividadeService {
 
     }
 
-    public void deletarAtividade(Long id) {
-
-        atividadeRepository.deleteById(id);
-
-    }
-
-    public Long buscarAtividadePorId(Long id) {
-
-        return atividadeRepository.buscarIdAtividadePorIdModal(id);
-
-    }
-
 }

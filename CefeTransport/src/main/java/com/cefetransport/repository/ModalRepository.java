@@ -8,6 +8,6 @@ import com.cefetransport.model.Modal;
 @Repository
 public interface ModalRepository extends JpaRepository<Modal, Long> {
     
-    
+    boolean existsByRegistro(String registro);
 
 }

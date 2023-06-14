@@ -47,6 +47,9 @@
                             <div class="divInp divSenha">
                                 <input type="password" class="input senha" th:field="*{senha}" placeholder="Senha">
                             </div>
+
+                            <small th:text="${erro}" th:if="${erro}" id="errorMessage"></small>
+
                             <div class="divBtnLogin">
                                 <button type="submit" id="btnLogin">Login</button>
                             </div>

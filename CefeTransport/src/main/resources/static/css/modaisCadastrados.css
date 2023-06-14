@@ -30,7 +30,7 @@ tbody {
 }
 
 .th {
-    width: 10%;
+    width: 5%;
     padding: 1%;
     background-color: rgb(255, 255, 255, .5);
     border: 1px solid #232323;
@@ -48,18 +48,6 @@ tbody {
     transition: all .5s;
 }
 
-.btn-danger {
-    margin-left: 10%;
-    padding: 2%;
-    color: red;
-}
-
-.btn-danger:hover {
-    background-color: red;
-    color: white;
-    border-radius: 7px;
-}
-
 .btn-alert {
     padding: 2%;
     color: #e1900f;
@@ -72,7 +60,7 @@ tbody {
 }
 
 .td {
-    width: 10%;
+    width: 5%;
     padding: 1%;
     text-align: center;
     border: 1px solid #232323;

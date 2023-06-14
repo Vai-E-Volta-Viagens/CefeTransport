@@ -78,6 +78,18 @@ label {
 
 /* /divInput */
 
+/* ErrorMessage */
+
+#errorMessage {
+
+    margin-top: 1%;
+    color: red;
+    font-size: 1rem;
+
+}
+
+/* /ErrorMessage */
+
 /* button */
 
 #btnCadastrar {

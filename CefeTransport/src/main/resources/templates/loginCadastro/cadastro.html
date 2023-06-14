@@ -30,6 +30,7 @@
 
             <input type="password" class="input inputSenha" placeholder="Senha" th:field="*{senha}">
             <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></small>
+            <small th:text="${erro}" th:if="${erro}" id="errorMessage"></small>
             <button type="submit">Cadastrar</button>
         </form>
     </body>

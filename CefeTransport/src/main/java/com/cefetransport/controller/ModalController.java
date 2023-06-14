@@ -3,6 +3,7 @@ package com.cefetransport.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cefetransport.exception.ModalExistRegistroException;
+import com.cefetransport.exception.ModalNoExistException;
 import com.cefetransport.exception.UsuarioNaoLogadoException;
 import com.cefetransport.model.Modal;
 import com.cefetransport.repository.ModalRepository;
@@ -61,8 +64,14 @@ public class ModalController {
     }
 
     @PostMapping("/cadastrarModal")
-    public String cadastrarModal(@Valid Modal modal, BindingResult br, HttpSession session) throws Exception {
+    public String cadastrarModal(@Valid Modal modal, BindingResult br, HttpSession session, Model model) throws Exception, UsuarioNaoLogadoException {
+        
+        if (!(session.getAttribute("funcionarioLogado") != null)) {
 
+            throw new UsuarioNaoLogadoException();
+
+        }
+        
         mv.addObject("modal", new Modal());
 
         if (br.hasErrors()) {
@@ -71,11 +80,21 @@ public class ModalController {
 
         } else {
 
-            Modal modalSalvo = modalService.cadastrarModal(modal);
+            try {
+                
+                Modal modalSalvo = modalService.cadastrarModal(modal);
 
-            atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalSalvo, "Cadastro de Modal");
+                atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalSalvo,
+                        "Cadastro de Modal");
 
-            return "redirect:/modal/";
+                return "redirect:/modal/";
+
+            } catch (ModalExistRegistroException e) {
+                
+                model.addAttribute("erro", e.getMessage());
+                return "home/cadastrarModal";
+
+            }
 
         }
 
@@ -116,7 +135,7 @@ public class ModalController {
     
     @Transactional
     @PostMapping("/alterarModal")
-    public String alterarModal(@Valid Modal modal, BindingResult br) {
+    public String alterarModal(@Valid Modal modal, BindingResult br, Model model) {
 
         if (br.hasErrors()) {
 
@@ -124,32 +143,46 @@ public class ModalController {
 
         } else {
 
-            modalService.alterarModal(modal);
+            try {
+                
+                modalService.alterarModal(modal);
 
-            Modal modalAtual = entityManager.merge(modal);
+                Modal modalAtual = entityManager.merge(modal);
 
-            atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalAtual, "Alteração de Modal");
+                atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalAtual,
+                        "Alteração de Modal");
 
-            return "redirect:/modal/";
+                return "redirect:/modal/";
+
+            } catch (ModalNoExistException e) {
+                
+                model.addAttribute("erro", e.getMessage());
+
+                return "home/modaisCadastrados";
+
+            }
 
         }
 
     }
 
-    @GetMapping("/deletar/{id}")
-    public String deletarModal(@PathVariable("id") Long id) {
+    // @Transactional
+    // @GetMapping("/deletar/{id}")
+    // public String deletarModal(@PathVariable("id") Long id) {
 
-        Modal modal = modalService.buscarModalPorId(id);
+    //     Modal modal = modalService.buscarModalPorId(id);
 
-        atividadeService.deletarAtividade(atividadeService.buscarAtividadePorId(id));
+    //     Modal modalAtual = entityManager.merge(modal);
 
-        modalService.deletarModal(id);
+    //     atividadeService.deletarAtividades(id);
 
-        atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modal, "Exclusão de Modal");
+    //     modalService.deletarModal(id);
 
-        return "redirect:/modal/";
+    //     atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalAtual, "Exclusão de Modal");
 
-    }
+    //     return "redirect:/modal/";
+
+    // }
 
     @ExceptionHandler(UsuarioNaoLogadoException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
