@@ -1,7 +1,10 @@
 package com.cefetransport.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -166,29 +169,48 @@ public class ModalController {
 
     }
 
-    // @Transactional
-    // @GetMapping("/deletar/{id}")
-    // public String deletarModal(@PathVariable("id") Long id) {
-
-    //     Modal modal = modalService.buscarModalPorId(id);
-
-    //     Modal modalAtual = entityManager.merge(modal);
-
-    //     atividadeService.deletarAtividades(id);
-
-    //     modalService.deletarModal(id);
-
-    //     atividadeService.salvarAtividade(funcionarioController.getEntidadeLogado(), modalAtual, "Exclusão de Modal");
-
-    //     return "redirect:/modal/";
-
-    // }
-
     @ExceptionHandler(UsuarioNaoLogadoException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String handleUsuarioNaoLogadoException() {
 
         return "exception/exception";
+
+    }
+
+    // Para conexão com o sistema principal
+
+    @GetMapping("/modais")
+    public ResponseEntity<List<Modal>> modaisCadastradosParaConexaoApi() {
+
+        List<Modal> modais = modalRepository.findAll();
+        return ResponseEntity.ok(modais);
+
+    }
+
+    @GetMapping("/registrosmodais")
+    public ResponseEntity<List<String>> registrosModais() {
+
+        List<String> registros = modalRepository.buscarRegistrosModais();
+
+        return ResponseEntity.ok(registros);
+
+    }
+
+    @GetMapping("/vagasmodais")
+    public ResponseEntity<List<Integer>> vagasModais() {
+
+        List<Integer> vagas = modalRepository.buscarVagasModais();
+
+        return ResponseEntity.ok(vagas);
+
+    }
+
+    @GetMapping("/verificastatus")
+    public ResponseEntity<String> verificaStatusModalPorRegistro() {
+
+        String statusVerificado = modalRepository.buscarStatusDoModalPorRegistro("ABC-1D23");
+
+        return ResponseEntity.ok(statusVerificado);
 
     }
 

@@ -22,9 +22,8 @@ import com.cefetransport.service.FuncionarioService;
 import com.cefetransport.util.Util;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.Getter;
-
-import javax.validation.Valid;
 
 @Controller
 public class FuncionarioController {
