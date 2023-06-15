@@ -205,10 +205,10 @@ public class ModalController {
 
     }
 
-    @GetMapping("/verificastatus")
-    public ResponseEntity<String> verificaStatusModalPorRegistro() {
+    @GetMapping("/verificastatus/{registro}")
+    public ResponseEntity<String> verificaStatusModalPorRegistro(@PathVariable("registro") String registro) {
 
-        String statusVerificado = modalRepository.buscarStatusDoModalPorRegistro("ABC-1D23");
+        String statusVerificado = modalRepository.buscarStatusDoModalPorRegistro(registro);
 
         return ResponseEntity.ok(statusVerificado);
 
