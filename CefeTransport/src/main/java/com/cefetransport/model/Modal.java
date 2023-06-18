@@ -24,7 +24,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "modais")
+@Table(name = "tb_modal_ct")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,7 +33,7 @@ public class Modal {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idModal;
 
     @NotBlank(message = "Insira o 'Tipo' do modal")
     @Enumerated(EnumType.STRING)

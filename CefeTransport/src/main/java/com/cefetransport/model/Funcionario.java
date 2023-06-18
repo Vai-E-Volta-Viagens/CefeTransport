@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "funcionarios")
+@Table(name = "tb_funcionarios_ct")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +23,7 @@ public class Funcionario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idFuncionario;
 
     @NotBlank(message = "O 'Nome' é obrigatório")
     @Size(min = 2, message = "O 'Nome' precisa ter no mínimo 2 caracteres")

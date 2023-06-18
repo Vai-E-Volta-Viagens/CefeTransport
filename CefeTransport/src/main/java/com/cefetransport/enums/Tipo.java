@@ -2,11 +2,11 @@ package com.cefetransport.enums;
 
 public enum Tipo {
     
-    VAN("Van"),
+    // VAN("Van"),
     TREM("Trem"),
     AVIAO("Avião"),
-    BARCO("Barco"),
-    METRO("Metrô"),
+    NAVIO("Navio"),
+    // METRO("Metrô"),
     ONIBUS("Ônibus");
 
     private String tipo;
