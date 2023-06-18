@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 import com.cefetransport.exception.ModalExistRegistroException;
 import com.cefetransport.exception.ModalNoExistException;
 import com.cefetransport.model.Modal;
+import com.cefetransport.model.Proprietaria;
 import com.cefetransport.repository.ModalRepository;
+import com.cefetransport.repository.ProprietariaRepository;
 
 @Service
 public class ModalService {
     
     @Autowired
     private ModalRepository modalRepository;
+
+    @Autowired
+    private ProprietariaRepository proprietariaRepository;
 
     public Modal cadastrarModal(Modal modal) {
 
@@ -48,12 +53,16 @@ public class ModalService {
 
     public void alterarModal(Modal modal) {
 
-        // cadastrarModal(modal);
-
         Optional<Modal> modalAlterar = modalRepository.findById(modal.getId());
 
         if (modalAlterar != null) {
+
+
+            Long proprietarioId = modalAlterar.get().getProprietaria().getId();
+
+            Proprietaria proprietaria = proprietariaRepository.findById(proprietarioId).orElse(null);
             
+            modal.setProprietaria(proprietaria);
             modal.setStatus(modal.getStatus());
             modalRepository.save(modalAlterar.get());
 

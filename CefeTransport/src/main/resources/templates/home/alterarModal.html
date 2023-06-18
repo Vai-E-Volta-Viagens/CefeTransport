@@ -46,13 +46,6 @@
 
             </div>
 
-            <div class="divInput inpVagas">
-            
-                <label for="inpVagas">Insira a quantidade de vagas:</label>
-                <input type="number" name="inpVagas" class="inputVagas" th:field="*{vagas}" th:value="${vagas}" readonly>
-            
-            </div>
-
             <div class="divInput inpStatus">
 
                 <label for="inpStatus">Selecione o status atual:</label>
@@ -73,12 +66,6 @@
             <div class="errors" th:if="${#fields.hasErrors('registro')}">
 
                 <strong th:errors="*{registro}"></strong>
-
-            </div>
-
-            <div class="errors" th:if="${#fields.hasErrors('vagas')}">
-
-                <strong th:errors="*{vagas}"></strong>
 
             </div>
 

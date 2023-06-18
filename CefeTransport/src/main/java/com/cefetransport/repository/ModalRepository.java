@@ -29,4 +29,10 @@ public interface ModalRepository extends JpaRepository<Modal, Long> {
             """)
     String buscarStatusDoModalPorRegistro(String registro);
 
+    @Query(nativeQuery = true, value = """
+                    SELECT proprietaria_id FROM modais
+                    WHERE registro = :registro
+                    """)
+    Long buscarProprietariaPorRegistro(String registro);
+
 }

@@ -41,18 +41,22 @@
 
             </div>
 
+            <div class="divInput inpProprietaria">
+
+                <label for="selProprietaria">Selecione a proprietaria:</label>
+                <select name="selProprietaria" class="select selProprietaria" th:field="*{proprietaria}">
+
+                    <option th:each="proprietaria : ${proprietarias}" th:value="${proprietaria.id}" th:text="${proprietaria.nome}"></option>
+
+                </select>
+
+            </div>
+
             <div class="divInput inpRegistro">
 
                 <label for="inpRegistro">Insira o código de registro:</label>
                 <input type="text" name="inpRegistro" class="inputRegistro" th:field="*{registro}">
 
-            </div>
-
-            <div class="divInput inpVagas">
-            
-                <label for="inpVagas">Insira a quantidade de vagas:</label>
-                <input type="number" name="inpVagas" class="inputVagas" th:field="*{vagas}">
-            
             </div>
 
             <div class="divInput inpStatus">
@@ -72,15 +76,15 @@
 
             </div>
 
-            <div class="errors" th:if="${#fields.hasErrors('registro')}">
+            <div class="errors" th:if="${#fields.hasErrors('proprietaria')}">
 
-                <strong th:errors="*{registro}"></strong>
+                <strong th:erros="*{proprietaria}"></strong>
 
             </div>
 
-            <div class="errors" th:if="${#fields.hasErrors('vagas')}">
+            <div class="errors" th:if="${#fields.hasErrors('registro')}">
 
-                <strong th:errors="*{vagas}"></strong>
+                <strong th:errors="*{registro}"></strong>
 
             </div>
 
