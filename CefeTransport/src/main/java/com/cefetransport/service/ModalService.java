@@ -53,12 +53,12 @@ public class ModalService {
 
     public void alterarModal(Modal modal) {
 
-        Optional<Modal> modalAlterar = modalRepository.findById(modal.getId());
+        Optional<Modal> modalAlterar = modalRepository.findById(modal.getIdModal());
 
         if (modalAlterar != null) {
 
 
-            Long proprietarioId = modalAlterar.get().getProprietaria().getId();
+            Long proprietarioId = modalAlterar.get().getProprietaria().getIdProprietaria();
 
             Proprietaria proprietaria = proprietariaRepository.findById(proprietarioId).orElse(null);
             
@@ -68,7 +68,7 @@ public class ModalService {
 
         } else {
 
-            throw new ModalNoExistException("Modal não encontrado com o ID: " + modal.getId());
+            throw new ModalNoExistException("Modal não encontrado com o ID: " + modal.getIdModal());
 
         }
 

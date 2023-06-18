@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cefetransport.dto.ProprietariaRecord;
 import com.cefetransport.exception.ModalExistRegistroException;
 import com.cefetransport.exception.ModalNoExistException;
 import com.cefetransport.exception.UsuarioNaoLogadoException;
@@ -93,7 +92,7 @@ public class ModalController {
 
         model.addAttribute("proprietarias", proprietarias);
 
-        Long proprietariaId = modal.getProprietaria().getId();
+        Long proprietariaId = modal.getProprietaria().getIdProprietaria();
 
         Proprietaria proprietaria = proprietariaRepository.findById(proprietariaId).orElse(null);
 

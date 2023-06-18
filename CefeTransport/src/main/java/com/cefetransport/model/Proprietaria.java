@@ -21,7 +21,7 @@ public class Proprietaria {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idProprietaria;
 
     @NotBlank(message = "Preencha o nome da empresa proprietária.")
     private String nome;

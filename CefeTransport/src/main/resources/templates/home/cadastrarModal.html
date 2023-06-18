@@ -46,7 +46,7 @@
                 <label for="selProprietaria">Selecione a proprietaria:</label>
                 <select name="selProprietaria" class="select selProprietaria" th:field="*{proprietaria}">
 
-                    <option th:each="proprietaria : ${proprietarias}" th:value="${proprietaria.id}" th:text="${proprietaria.nome}"></option>
+                    <option th:each="proprietaria : ${proprietarias}" th:value="${proprietaria.idProprietaria}" th:text="${proprietaria.nome}"></option>
 
                 </select>
 
