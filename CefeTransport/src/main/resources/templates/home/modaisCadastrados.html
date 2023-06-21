@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- /Fontes -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/modaisCadastrados.css">
+    <!-- /CSS -->
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/4ad013ec14.js" crossorigin="anonymous"></script>
+    <!-- /Fontawesome -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/imgs/logo/logo-editor_icone.png" type="image/x-icon">
+    <!-- /Favicon -->
+    <title>CefeTransport</title>
+</head>
+<body>
+
+    <nav th:replace="~{fragmentos/fragmentos :: header}"></nav>
+    
+    <main>
+
+        <table id="tableModais">
+
+            <tr id="trHead">
+            
+                <th class="th thRegistro">Registro</th>
+                <th class="th thStatus">Status</th>
+                <th class="th thTipo">Tipo</th>
+                <th class="th thProprietaria">Proprietaria</th>
+                <th class="th thAcoes">Ações</th>
+            
+            </tr>
+
+            <tr id="trBody" th:each="modal : ${modalList}">
+            
+                <td class="td tdRegistro" th:text="${modal.registro}"></td>
+                <td class="td tdStatus" th:text="${modal.status}"></td>
+                <td class="td tdTipo" th:text="${modal.tipo}"></td>
+                <td class="td tdProprietaria" th:text="${modal.proprietaria.nome}"></td>
+                <td class="td tdAcoes">
+            
+                    <a class="btn btn-alert" th:href="@{/modal/alterar/{id}(id=${modal.idModal})}">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+            
+                </td>
+            
+            </tr>
+
+        </table>
+
+    </main>
+
+</body>
+</html>

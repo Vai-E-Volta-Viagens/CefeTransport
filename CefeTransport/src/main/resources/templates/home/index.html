@@ -10,20 +10,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <!-- /Fontes -->
     <!-- CSS -->
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
     <!-- /CSS -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="imgs/logo/logo-editor_icone.png" type="image/x-icon">
+    <!-- /Favicon -->
     <title>CefeTransport</title>
 </head>
 <body>
-    <div class="bemvindo">
-        <p>Bem vindo, <span th:text="${session.funcionarioLogado.nome}"></span></p>
-        <span class="progressNotificacao"></span>
-    </div>
-    
-    <nav th:replace="~{fragmentos/fragmentos :: header}"></nav>
 
     <main>
+
+        <nav th:replace="~{fragmentos/fragmentos :: header}"></nav>
+
+        <div class="bemvindo">
+            <p>Bem vindo, <span th:text="${session.funcionarioLogado.nome}"></span></p>
+            <span class="progressNotificacao"></span>
+        </div>
+
+        <section id="btnActions">
+            
+            <a th:href="@{/modal/cadastrar}" class="btn cadModal">Cadastrar Modal</a>
+            <a th:href="@{/modal/}" class="btn conModal">Modais Cadastrados</a>
+
+        </section>
 
     </main>
 

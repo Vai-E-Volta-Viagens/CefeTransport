@@ -10,18 +10,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <!-- /Fontes -->
         <!-- CSS -->
-        <link rel="stylesheet" href="css/cadastro.css">
+        <link rel="stylesheet" href="/css/cadastro.css">
         <!-- /CSS -->
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="imgs/logo/logo-editor_icone.png" type="image/x-icon">
+        <!-- /Favicon -->
         <title>CefeTransport</title>
     </head>
     <body>
         <form action="/cadastrarFuncionario" method="post" th:object="${funcionario}">
             <input type="text" class="input inputNome" placeholder="Nome" th:field="*{nome}">
             <small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="form-text text-danger"></small>
+
+            <input type="text" class="input inputSobrenome" placeholder="Sobrenome" th:field="*{sobrenome}">
+            <small th:if="${#fields.hasErrors('sobrenome')}" th:errors="*{sobrenome}" class="form-text text-danger"></small>
+
             <input type="email" class="input inputEmail" placeholder="E-mail" th:field="*{email}">
             <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-danger"></small>
+
             <input type="password" class="input inputSenha" placeholder="Senha" th:field="*{senha}">
             <small th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="form-text text-danger"></small>
+            <small th:text="${erro}" th:if="${erro}" id="errorMessage"></small>
             <button type="submit">Cadastrar</button>
         </form>
     </body>

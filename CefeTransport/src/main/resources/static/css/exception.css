@@ -43,6 +43,7 @@ main a {
     justify-content: center;
     align-items: center;
     background-color: #232323;
+    border-radius: 7px;
     color: #bdbdbd;
     font-size: 1.2rem;
     text-decoration: none;

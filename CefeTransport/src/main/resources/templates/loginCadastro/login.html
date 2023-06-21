@@ -12,6 +12,9 @@
         <!-- CSS -->
         <link rel="stylesheet" href="css/login.css">
         <!-- /CSS -->
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="imgs/logo/logo-editor_icone_1.png" type="image/x-icon">
+        <!-- /Favicon -->
         <title>CefeTransport - Login</title>
     </head>
     <body>
@@ -29,6 +32,7 @@
                     <div class="divTitle">
                         <h1>LOGIN</h1>
                     </div>
+                    <small th:if="funcionarioLogin == null" th:text="${msg}"></small>
                     <form action="/login" method="post" id="formLogin" th:object="${funcionarioDto}">
                         <div class="divInputForm">
                             <div class="divError errorEmail">
@@ -43,6 +47,9 @@
                             <div class="divInp divSenha">
                                 <input type="password" class="input senha" th:field="*{senha}" placeholder="Senha">
                             </div>
+
+                            <small th:text="${erro}" th:if="${erro}" id="errorMessage"></small>
+
                             <div class="divBtnLogin">
                                 <button type="submit" id="btnLogin">Login</button>
                             </div>

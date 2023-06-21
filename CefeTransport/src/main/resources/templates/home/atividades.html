@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- /Fontes -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/atividades.css">
+    <!-- /CSS -->
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/4ad013ec14.js" crossorigin="anonymous"></script>
+    <!-- /Fontawesome -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="imgs/logo/logo-editor_icone.png" type="image/x-icon">
+    <!-- /Favicon -->
+    <title>CefeTransport</title>
+</head>
+<body>
+
+    <nav th:replace="~{fragmentos/fragmentos :: header}"></nav>
+    
+    <main>
+
+        <table id="tableModais">
+
+            <tr id="trHead">
+            
+                <th class="th thFuncionario">Funcionario</th>
+                <th class="th thModal>">Modal</th>
+                <th class="th thAtividade">Atividade</th>
+                <th class="th thDataHora">Data e Hora</th>
+            
+            </tr>
+
+            <tr id="trBody" th:each="atividades : ${atividadesList}">
+            
+                <td class="td tdFuncionario" th:text="${atividades.funcionario.nome}"></td>
+                <td class="td tdModal" th:text="${atividades.modal.registro}"></td>
+                <td class="td tdAtividade" th:text="${atividades.atividade}"></td>
+                <td class="td tdDataHora" th:text="${atividades.dataHora}"></td>
+            
+            </tr>
+
+        </table>
+
+    </main>
+
+</body>
+</html>

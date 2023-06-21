@@ -39,7 +39,7 @@ public class FuncionarioService {
 
     }
 
-    public Funcionario loginFuncionario(String email, String senha) throws ServiceException {
+    public Funcionario loginFuncionario(String email, String senha) {
 
         Funcionario funcionarioLogin = funcionarioRepository.buscarLogin(email, senha);
         return funcionarioLogin;
